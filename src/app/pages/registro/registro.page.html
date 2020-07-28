@@ -1,0 +1,74 @@
+<ion-header class="ion-no-border">
+    <div class="login-header ion-padding">
+        <img class="logo-img" src="assets/img/logoMed.png">
+    </div>
+</ion-header>
+<ion-content class="ion-padding">
+    <div class="registro">
+        <div class="buttom-action">
+            <ion-button routerLink="/login" fill="clear" color="dark" size="small">
+                <b><p class="signin-text">Iniciar Sesión</p></b>
+            </ion-button>
+            <ion-button fill="clear" color="dark" size="small">
+                <b><p class="signup-text">Registrarse</p></b>
+            </ion-button>
+        </div>
+        <ion-item transparent>
+            <ion-icon icon-small name="person-outline"></ion-icon>
+            <ion-input [(ngModel)]="paciente.cedula" placeholder="Cédula" type="number"></ion-input>
+        </ion-item>
+        <ion-item transparent>
+            <ion-icon icon-small name="person-outline"></ion-icon>
+            <ion-input [(ngModel)]="paciente.nombres" placeholder="Nombres" type="text"></ion-input>
+        </ion-item>
+        <ion-item transparent>
+            <ion-icon icon-small name="person-outline"></ion-icon>
+            <ion-input [(ngModel)]="paciente.apellidos" placeholder="Apellidos" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Fecha de nacimiento</ion-label>
+            <ion-input [(ngModel)]="paciente.fechaNac" type="date"></ion-input>
+        </ion-item>
+        <ion-item transparent>
+            <ion-icon icon-small name="call-outline"></ion-icon>
+            <ion-input [(ngModel)]="paciente.telefono" placeholder="Teléfono" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Tipo de sangre</ion-label>
+            <ion-select ok-text="Ok" cancel-text="Cancelar" [(ngModel)]="paciente.tipoSangre">
+                <ion-select-option value="A+">A+</ion-select-option>
+                <ion-select-option value="B+">B+</ion-select-option>
+                <ion-select-option value="O+">O+</ion-select-option>
+                <ion-select-option value="AB+">AB+</ion-select-option>
+                <ion-select-option value="A-">A-</ion-select-option>
+                <ion-select-option value="B-">B-</ion-select-option>
+                <ion-select-option value="O-">O-</ion-select-option>
+                <ion-select-option value="AB-">AB-</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Estado Civil</ion-label>
+            <ion-select ok-text="Ok" cancel-text="Cancelar" [(ngModel)]="paciente.estadoCivil">
+                <ion-select-option value="Soltero">Soltero</ion-select-option>
+                <ion-select-option value="Casdo">Casado</ion-select-option>
+                <ion-select-option value="Divorciado">Divorciado</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item transparent>
+            <ion-icon icon-small name="mail-outline"></ion-icon>
+            <ion-input [(ngModel)]="paciente.email" placeholder="Email" type="email"></ion-input>
+        </ion-item>
+        <ion-item transparent>
+            <ion-icon icon-small name="lock-closed-outline"></ion-icon>
+            <ion-input [(ngModel)]="paciente.contrasena" placeholder="Contraseña" type="password"></ion-input>
+        </ion-item>
+        <ion-item transparent>
+            <ion-icon icon-small name="lock-closed-outline"></ion-icon>
+            <ion-input placeholder="Repetir contraseña" type="password"></ion-input>
+        </ion-item>
+        <div linespace></div>
+
+        <ion-button (click)="registrar()" color="primary" class="ion-buttom-class" shape="round" fill="solid" size="large" expand="block">Registrarme</ion-button>
+        <ion-label class="ion-text-center">Ya tengo una cuenta <span class="link-buttom"><strong>Iniciar Sesión</strong></span></ion-label>
+    </div>
+</ion-content>

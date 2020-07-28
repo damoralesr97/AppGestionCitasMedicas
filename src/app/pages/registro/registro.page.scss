@@ -36,7 +36,7 @@
 
 .signup-text {
     font-size: small;
-    color: #a8a8a8;
+    font-weight: bold;
     text-align: center;
     font-family: 'Nunito', sans-serif;
     text-transform: none;
@@ -44,16 +44,10 @@
 
 .signin-text {
     font-size: small;
-    font-weight: bold;
+    color: #a8a8a8;
     text-align: center;
     font-family: 'Nunito', sans-serif;
     text-transform: none;
-}
-
-ion-label {
-    opacity: .8;
-    font-size: 13px;
-    display: block;
 }
 
 [transparent] {
@@ -85,9 +79,13 @@ ion-item {
     height: 30px;
 }
 
-.forget-password {
+ion-label {
+    opacity: .8;
     font-size: 13px;
     display: block;
-    text-align: right;
-    padding: 10px;
+}
+
+.registro {
+    display: block;
+    padding: 15px;
 }
