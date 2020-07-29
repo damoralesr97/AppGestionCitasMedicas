@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Registrar Cita</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <form #crarCitaForm="ngForm" (ngSubmit)="onSubmitTemplate()">
+
+        <ion-list>
+
+            <ion-item>
+                <ion-label position="stacked">Paciente</ion-label>
+                <ion-input [(ngModel)]="paciente.data.nombres + ' ' + paciente.data.apellidos" type="text" name="paciente" disabled></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="stacked">Médico</ion-label>
+                <ion-select [(ngModel)]="cita.medicoUid" name="medico">
+                    <ion-select-option *ngFor="let medico of medicos | async; trackBy: trackByFn" [value]="medico.uid">{{medico.nombres + ' ' + medico.apellidos}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="stacked">Fecha</ion-label>
+                <ion-input [(ngModel)]="cita.fecha" type="date" name="fecha"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="stacked">Hora</ion-label>
+                <ion-input [(ngModel)]="cita.hora" type="time" name="hora"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="stacked">Sintomas</ion-label>
+                <ion-textarea [(ngModel)]="cita.sintomas" type="text" name="observaciones" placeholder="Escriba sus sintomas aqui..." rows="10"></ion-textarea>
+            </ion-item>
+
+
+
+        </ion-list>
+
+        <ion-button expand="full " color="primary " type="submit ">Agendar</ion-button>
+
+    </form>
+
+</ion-content>

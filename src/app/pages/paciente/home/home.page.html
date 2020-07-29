@@ -1,0 +1,38 @@
+<ion-menu side="start" menuId="menuPaciente" contentId="paciente">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Paciente</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-no-border">
+        <ion-list>
+            <ion-menu-toggle>
+                <ion-item routerLink="/ver-citas-paciente">
+                    <ion-icon slot="start" name="book-outline"></ion-icon>Citas</ion-item>
+                <ion-item>Menu Item</ion-item>
+                <ion-item>Menu Item</ion-item>
+                <ion-item>Menu Item</ion-item>
+            </ion-menu-toggle>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="paciente"></ion-router-outlet>
+
+<ion-header>
+    <ion-toolbar class="ion-no-border" color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button menu="menuPaciente"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Inicio</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="logout()">
+                <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content>

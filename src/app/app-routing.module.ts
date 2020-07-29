@@ -15,6 +15,18 @@ const routes: Routes = [
     path: 'registro',
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
+  {
+    path: 'home-paciente',
+    loadChildren: () => import('./pages/paciente/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'ver-citas-paciente',
+    loadChildren: () => import('./pages/paciente/ver-citas/ver-citas.module').then( m => m.VerCitasPageModule)
+  },
+  {
+    path: 'crear-cita-paciente',
+    loadChildren: () => import('./pages/paciente/crear-cita/crear-cita.module').then( m => m.CrearCitaPageModule)
+  },
 ];
 
 @NgModule({
