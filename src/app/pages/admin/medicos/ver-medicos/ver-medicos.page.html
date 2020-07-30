@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Médicos</ion-title>
+    </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-searchbar placeholder="Buscar..." animated></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <ion-item *ngFor="let medico of medicos | async; trackBy: trackByFn">
+        <ion-label>
+            <h2>{{medico.nombres + ' ' + medico.apellidos}}</h2>
+            <h3>{{medico.email}}</h3>
+            <h3>{{medico.telefono}}</h3>
+        </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="primary" routerLink="/crear-medico-admin">
+        <ion-fab-button>
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

@@ -27,7 +27,7 @@ export class AuthService {
         } else if (usuario.rol === 'medico'){
           console.log('eres medico');
         } else if (usuario.rol === 'admin'){
-          console.log('eres admin');
+          this.router.navigateByUrl('home-admin');
         }
       });
     } catch (error) {

@@ -28,8 +28,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/paciente/crear-cita/crear-cita.module').then( m => m.CrearCitaPageModule)
   },
   {
-    path: 'home',
+    path: 'home-admin',
     loadChildren: () => import('./pages/admin/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'ver-medicos-admin',
+    loadChildren: () => import('./pages/admin/medicos/ver-medicos/ver-medicos.module').then( m => m.VerMedicosPageModule)
+  },
+  {
+    path: 'crear-medico-admin',
+    loadChildren: () => import('./pages/admin/medicos/crear-medico/crear-medico.module').then( m => m.CrearMedicoPageModule)
   },
 ];
 
