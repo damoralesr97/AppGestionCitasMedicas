@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'crear-cita-paciente',
     loadChildren: () => import('./pages/paciente/crear-cita/crear-cita.module').then( m => m.CrearCitaPageModule)
   },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/admin/home/home.module').then( m => m.HomePageModule)
+  },
 ];
 
 @NgModule({
