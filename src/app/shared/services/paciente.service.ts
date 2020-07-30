@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Paciente } from '../models/paciente';
-import { Observable } from 'rxjs';
 import { Cita } from '../models/cita';
+import { first } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +37,12 @@ export class PacienteService {
     cita.uid = this.angularFirestore.createId();
     const param = JSON.parse(JSON.stringify(cita));
     return this.angularFirestore.collection('citas').doc(cita.uid).set(param, {merge: true});
+  }
+
+  // Obtener Citas Pendientes
+  async getCitasPendientes(pacienteUid: string) {
+    return this.angularFirestore.collection<Cita>('citas', ref => ref.where('estado', '==', 'PENDIENTE')
+      .where('pacienteUid', '==', pacienteUid)).snapshotChanges();
   }
 
 }

@@ -6,6 +6,7 @@ import { PacienteService } from '../../../shared/services/paciente.service';
 import { Observable } from 'rxjs';
 import { MedicoService } from '../../../shared/services/medico.service';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-crear-cita',
@@ -21,10 +22,10 @@ export class CrearCitaPage implements OnInit {
   medicos: Observable<any>;
 
   // tslint:disable-next-line: max-line-length
-  constructor(private authSrv: AuthService, private pacienteSrv: PacienteService, private medicoSrv: MedicoService, private router: Router) { }
+  constructor(private authSrv: AuthService, private pacienteSrv: PacienteService, private medicoSrv: MedicoService, private alertController: AlertController, private router: Router) { }
 
-  ngOnInit() {
-    this.authSrv.getUser().subscribe(resp => {
+  async ngOnInit() {
+    (await this.authSrv.getUser()).subscribe(resp => {
       this.pacienteSrv.getPaciente(resp.uid).subscribe((res) => {
         if (res.payload.data() != null){
           this.paciente.id = res.payload.id;
@@ -41,11 +42,24 @@ export class CrearCitaPage implements OnInit {
     this.cita.pacienteUid = this.paciente.id;
     this.cita.estado = 'PENDIENTE';
     this.pacienteSrv.guardarCita(this.cita);
-    this.router.navigateByUrl('/ver-citas-paciente');
+    this.presentAlert('Cita solicitado con éxito');
+    this.router.navigateByUrl('/home-paciente');
+
   }
 
   trackByFn(index, obj) {
     return obj.uid;
+  }
+
+  // Mostrar alertas
+  async presentAlert(mensaje: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      subHeader: mensaje,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 }
