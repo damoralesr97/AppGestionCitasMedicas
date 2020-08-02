@@ -39,6 +39,10 @@ const routes: Routes = [
     path: 'crear-medico-admin',
     loadChildren: () => import('./pages/admin/medicos/crear-medico/crear-medico.module').then( m => m.CrearMedicoPageModule)
   },
+  {
+    path: 'editar-medico-admin/:id',
+    loadChildren: () => import('./pages/admin/medicos/editar-medico/editar-medico.module').then( m => m.EditarMedicoPageModule)
+  },
 ];
 
 @NgModule({

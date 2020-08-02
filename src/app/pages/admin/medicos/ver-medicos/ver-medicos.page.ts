@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicoService } from '../../../../shared/services/medico.service';
 import { Observable } from 'rxjs';
+import { Medico } from 'src/app/shared/models/medico';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ver-medicos',
@@ -10,7 +12,7 @@ import { Observable } from 'rxjs';
 export class VerMedicosPage implements OnInit {
   medicos: Observable<any>;
 
-  constructor(private medicoSrv: MedicoService) { }
+  constructor(private medicoSrv: MedicoService, private router: Router) { }
 
   ngOnInit() {
     this.medicos = this.medicoSrv.getMedicos();
@@ -18,6 +20,15 @@ export class VerMedicosPage implements OnInit {
 
   trackByFn(index, obj) {
     return obj.uid;
+  }
+
+  eliminarMedico(medico: Medico) {
+    medico.estado = 'inactivo';
+    this.medicoSrv.deleteMedico(medico);
+  }
+
+  showMedico(medicoUid: string) {
+    this.router.navigate([`editar-medico-admin/${medicoUid}`]);
   }
 
 }

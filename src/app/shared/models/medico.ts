@@ -6,8 +6,8 @@ export class Medico {
     fechaNac: string;
     telefono: string;
     tipoSangre: string;
-    estadoCivil: string;
     email: string;
     contrasena: string;
     rol: string;
+    estado: string;
 }

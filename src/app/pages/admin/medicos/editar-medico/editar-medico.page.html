@@ -3,39 +3,39 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title>Registrar médico</ion-title>
+        <ion-title>Editar médico</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
 
-    <form #crarCitaForm="ngForm" (ngSubmit)="onSubmitTemplate()">
+    <form #crarCitaForm="ngForm" (ngSubmit)="editarMedico()">
 
         <ion-list>
 
             <ion-item transparent>
                 <ion-icon slot="start" icon-small name="person-outline"></ion-icon>
-                <ion-input [(ngModel)]="medico.cedula" placeholder="Cédula" type="number" name="cedula"></ion-input>
+                <ion-input [(ngModel)]="medico.data.cedula" placeholder="Cédula" type="number" name="cedula"></ion-input>
             </ion-item>
             <ion-item transparent>
                 <ion-icon slot="start" icon-small name="person-outline"></ion-icon>
-                <ion-input [(ngModel)]="medico.nombres" placeholder="Nombres" type="text" name="nombres"></ion-input>
+                <ion-input [(ngModel)]="medico.data.nombres" placeholder="Nombres" type="text" name="nombres"></ion-input>
             </ion-item>
             <ion-item transparent>
                 <ion-icon slot="start" icon-small name="person-outline"></ion-icon>
-                <ion-input [(ngModel)]="medico.apellidos" placeholder="Apellidos" type="text" name="apellidos"></ion-input>
+                <ion-input [(ngModel)]="medico.data.apellidos" placeholder="Apellidos" type="text" name="apellidos"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Fecha de nacimiento</ion-label>
-                <ion-input [(ngModel)]="medico.fechaNac" type="date" name="fechaNac"></ion-input>
+                <ion-input [(ngModel)]="medico.data.fechaNac" type="date" name="fechaNac"></ion-input>
             </ion-item>
             <ion-item transparent>
                 <ion-icon slot="start" icon-small name="call-outline"></ion-icon>
-                <ion-input [(ngModel)]="medico.telefono" placeholder="Teléfono" type="number" name="telefono"></ion-input>
+                <ion-input [(ngModel)]="medico.data.telefono" placeholder="Teléfono" type="number" name="telefono"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Tipo de sangre</ion-label>
-                <ion-select ok-text="Ok" cancel-text="Cancelar" name="tipoSangre" [(ngModel)]="medico.tipoSangre">
+                <ion-select ok-text="Ok" cancel-text="Cancelar" name="tipoSangre" [(ngModel)]="medico.data.tipoSangre">
                     <ion-select-option value="A+">A+</ion-select-option>
                     <ion-select-option value="B+">B+</ion-select-option>
                     <ion-select-option value="O+">O+</ion-select-option>
@@ -45,14 +45,6 @@
                     <ion-select-option value="O-">O-</ion-select-option>
                     <ion-select-option value="AB-">AB-</ion-select-option>
                 </ion-select>
-            </ion-item>
-            <ion-item transparent>
-                <ion-icon slot="start" icon-small name="mail-outline"></ion-icon>
-                <ion-input [(ngModel)]="medico.email" placeholder="Email" type="email" name="email"></ion-input>
-            </ion-item>
-            <ion-item transparent>
-                <ion-icon slot="start" icon-small name="lock-closed-outline"></ion-icon>
-                <ion-input [(ngModel)]="medico.contrasena" placeholder="Contraseña" type="password" name="contrasena"></ion-input>
             </ion-item>
 
         </ion-list>

@@ -13,6 +13,7 @@ export class AuthService {
   // tslint:disable-next-line: max-line-length
   constructor(public afAuth: AngularFireAuth, private angularFirestore: AngularFirestore, private alertController: AlertController, private router: Router) { }
 
+  // Obtener usuario de la sesion
   async getUser() {
     return this.afAuth.authState;
   }
