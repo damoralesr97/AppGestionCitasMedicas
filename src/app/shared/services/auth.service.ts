@@ -37,8 +37,8 @@ export class AuthService {
   async updatePassword(password: string) {
     try{
       (await this.afAuth.currentUser).updatePassword(password);
-      (await this.getUser()).subscribe(res => {
-        this.angularFirestore.collection('usuarios').doc(res.uid).update({contrasena: password});
+      (await this.getUser()).subscribe(user => {
+        this.angularFirestore.collection('usuarios').doc(user.uid).update({contrasena: password});
       });
       await this.presentAlert('Contraseña actualizada', 'Listo');
     } catch (error) {
