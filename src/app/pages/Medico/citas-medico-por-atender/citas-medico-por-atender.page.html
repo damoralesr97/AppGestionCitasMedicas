@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Citas por atender</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Sintomas</ion-label>
+    <ion-label>Fecha</ion-label>
+    <ion-label>Hora</ion-label>
+  </ion-item>
+  <ion-list *ngFor="let cita of citas | async; trackBy: trackByFn">
+    <ion-item>
+      <ion-label (click)="showCita(cita.uid)">{{cita.sintomas}}</ion-label>
+      <ion-label (click)="showCita(cita.uid)">{{cita.fecha}}</ion-label>
+      <ion-label (click)="showCita(cita.uid)">{{cita.hora}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -51,10 +51,12 @@ export class AuthService {
     try{
       const us = await this.afAuth.signInWithEmailAndPassword(user.email, user.contrasena);
       this.angularFirestore.doc<any>(`usuarios/${us.user.uid}`).valueChanges().subscribe( usuario => {
+        console.log(usuario.rol);
         if (usuario.rol === 'paciente'){
           this.router.navigateByUrl('home-paciente');
         } else if (usuario.rol === 'medico'){
-          console.log('eres medico');
+          this.router.navigateByUrl('inicio-medico');
+          //console.log('eres medico');
         } else if (usuario.rol === 'admin'){
           this.router.navigateByUrl('home-admin');
         }

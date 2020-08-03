@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ingresar Cita</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list lines="full" class="ion-no-margin ion-no-padding">
+    <ion-item>
+      <ion-label class="titulos" position="stacked">Cedula <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required type="text" [(ngModel)]="cedula"></ion-input>
+      <ion-button  (click)="onEnterCedula()">Buscar</ion-button>
+    </ion-item>
+    
+
+    <ion-item>
+      <ion-label class="titulos" position="stacked">Apellidos</ion-label>
+      <ion-input required type="text" [(ngModel)]="apellidosUsuario"></ion-input>
+      <ion-button  (click)="onEnterApellidos()">Buscar</ion-button>
+    </ion-item>
+    
+
+    
+    <ion-item>
+      <ion-label class="titulos" position="stacked">Paciente</ion-label>
+      <ion-select [(ngModel)]="usuarioApellidosNombres" multiple="false" cancelText="Cancelar" okText="Ok">
+        <ion-select-option *ngFor="let usuario of usuarios | async; trackBy: trackByFn">
+          {{usuario.apellidos +' ' + usuario.nombres}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label class="titulos" position="stacked">Sintomas</ion-label>
+      <ion-textarea required type="text" [(ngModel)]="cita.sintomas"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-label class="titulos" position="stacked">Fecha</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY"  requiered type="text" [(ngModel)]="fechaActual"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label class="titulos" position="stacked">Hora</ion-label>
+    <ion-input requiered type="time" [(ngModel)]="cita.hora"></ion-input>
+  </ion-item>
+
+  <div class="ion-padding">
+    <ion-button expand="block" type="submit"  (click)="guardarCita()">Guardar</ion-button>
+  </div>
+</ion-content>

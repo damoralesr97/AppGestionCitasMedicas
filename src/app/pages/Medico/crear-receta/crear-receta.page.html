@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear Receta</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+      <ion-label position="stacked">Indicaciones</ion-label>
+      <ion-textarea required type="text" [(ngModel)]="receta.indicaciones"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Medicamento</ion-label>
+      <ion-textarea required type="text" [(ngModel)]="receta.medicamento"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Fecha</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" readonly="true" requiered type="text" [(ngModel)]="fechaActual"></ion-datetime>
+    </ion-item>
+
+  <div class="ion-padding">
+    <ion-button expand="block" type="submit"  (click)="guardarReceta()">Guardar</ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Citas</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="start" horizontal="start" slot="fixed">
+    <ion-button (click)="showCitaPorAtender()">
+      <ion-label>Por atender</ion-label>
+    </ion-button>
+    <ion-button (click)="showCitaAtendidas()">
+      <ion-label>Atendidas</ion-label>
+    </ion-button>
+  </ion-fab>
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="showCrearCita()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-button (click)="showRequestCitas()">
+      <ion-icon size="large" name="notifications" (click)="showRequestCitas()"></ion-icon>
+      <ion-label>{{numeroCitasSolicitudes}}</ion-label>
+    </ion-button>
+  </ion-fab>
+
+  
+</ion-content>
