@@ -112,6 +112,14 @@ const routes: Routes = [
     path: 'crear-cita-medico',
     loadChildren: () => import('./pages/Medico/crear-cita-medico/crear-cita-medico.module').then( m => m.CrearCitaMedicoPageModule)
   },
+  {
+    path: 'ver-citas',
+    loadChildren: () => import('./pages/admin/citas/ver-citas/ver-citas.module').then( m => m.VerCitasPageModule)
+  },
+  {
+    path: 'ver-facturas',
+    loadChildren: () => import('./pages/admin/facturas/ver-facturas/ver-facturas.module').then( m => m.VerFacturasPageModule)
+  }
 ];
 
 @NgModule({

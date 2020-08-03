@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>Citas</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+      <ion-searchbar placeholder="Buscar..." animated></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let cita of citas">
+        <ion-label>
+            <h2>Paciente: {{cita.paciente}}</h2>
+            <h2>Medico: {{cita.medico}}</h2>
+            <h3>{{cita.fecha}}</h3>
+            <h3>{{cita.hora}}</h3>
+            <h3>{{cita.estado}}</h3>
+        </ion-label>
+    </ion-item>
+</ion-list>
+
+</ion-content>

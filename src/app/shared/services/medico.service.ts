@@ -44,6 +44,10 @@ export class MedicoService {
     return this.angularFirestore.collection<Medico>('usuarios', ref => ref.where('uid', '==', medicoUid)).snapshotChanges();
   }
 
+  getMedico(uid: string){
+    return this.angularFirestore.collection('usuarios').doc(uid).snapshotChanges();
+  }
+
   // Obtener todos los medicos
   getMedicos(): Observable<any[]>{
     return this.angularFirestore.collection('usuarios',
@@ -173,7 +177,7 @@ export class MedicoService {
 
   public getCitasPendientes(): Observable<any[]>{
     return this.angularFirestore.collection('citas',
-      ref => ref.where("estado","==",`Pendiente`)).valueChanges();
+      ref => ref.where("estado","==",`PENDIENTE`)).valueChanges();
   }
 
   //----------------------------Usuarios-------------------------------------------
