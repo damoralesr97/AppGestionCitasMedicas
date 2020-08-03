@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cita</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="(cita ) as cita">
+
+  <ion-card>
+    <ion-card-content>
+      <ion-label class="titulos">Cedula</ion-label><ion-input required type="text" [(ngModel)]="usuario.cedula"></ion-input>
+      <ion-label class="titulos">Apellidos</ion-label><ion-input required type="text" [(ngModel)]="usuario.apellidos"></ion-input>
+      <ion-label class="titulos">Nombres</ion-label><ion-input required type="text" [(ngModel)]="usuario.nombres"></ion-input>
+      <ion-label class="titulos">Telefono</ion-label><ion-input required type="text" [(ngModel)]="usuario.telefono"></ion-input>
+      <ion-label class="titulos">Grupo Sanguineo</ion-label><ion-input required type="text" [(ngModel)]="usuario.grupoSanguineo"></ion-input>
+      <ion-label class="titulos">Fecha Nacimiento</ion-label><ion-input required type="text" [(ngModel)]="usuario.fechaNacimiento"></ion-input>
+      <ion-label class="titulos">Estado Civil</ion-label><ion-input required type="text" [(ngModel)]="usuario.estadoCivil"></ion-input>
+      <ion-label class="titulos">Ocupacion</ion-label><ion-input required type="text" [(ngModel)]="usuario.ocupacion"></ion-input>
+      <ion-label class="titulos">Sintomas</ion-label><ion-input required type="text" [(ngModel)]="cita.sintomas"></ion-input>
+      <ion-label class="titulos">Fecha</ion-label><ion-input required type="date" [(ngModel)]="cita.fecha"></ion-input>
+      <ion-label class="titulos">Hora</ion-label><ion-input required type="time" [(ngModel)]="cita.hora"></ion-input>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="ion-padding">
+    <ion-button [class]="cita.estado=='Atendido'?'estado1':'estado2'" expand="block" type="submit"  (click)="atenderCita()">Atender</ion-button>
+    <ion-button [class]="cita.estado=='Por atender'?'estado1':'estado2'" expand="block" type="submit"  (click)="verConsulta()">Ver Consulta</ion-button>
+  </div>
+
+</ion-content>

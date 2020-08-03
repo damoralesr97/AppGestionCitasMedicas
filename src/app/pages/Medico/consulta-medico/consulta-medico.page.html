@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Consulta</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="(consulta ) as consulta">
+
+  <ion-card>
+    <ion-card-content>
+      <ion-label class="titulos">Apellidos Paciente</ion-label><ion-input required type="text" [(ngModel)]="usuario.apellidos" ></ion-input>
+      <ion-label class="titulos">Nombres Paciente</ion-label><ion-input required type="text" [(ngModel)]="usuario.nombres" ></ion-input>
+      <ion-label class="titulos">Antecedentes</ion-label><ion-input required type="text" [(ngModel)]="consulta.antecedentes"></ion-input>
+      <ion-label class="titulos">Sintomas</ion-label><ion-input required type="text" [(ngModel)]="consulta.sintomas"></ion-input>
+      <ion-label class="titulos">Fecha</ion-label><ion-datetime displayFormat="DD/MM/YYYY" readonly="true" required [(ngModel)]="consulta.fecha"></ion-datetime>
+      <ion-label class="titulos">Telefono</ion-label><ion-input required type="number" [(ngModel)]="usuario.telefono"></ion-input>
+      <ion-label class="titulos">Total</ion-label><ion-input required type="number" [(ngModel)]="consulta.total"></ion-input>
+      <!--<ion-label class="titulos">Saldo</ion-label><ion-input [class]="consulta.saldo>0.0?'saldo':''" required type="number" [(ngModel)]="consulta.saldo"></ion-input>-->
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-button (click)="actualizaConsulta()">
+      <ion-label>Actualizar</ion-label>
+    </ion-button>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-button (click)="showReceta()">
+      <ion-label>Ver Receta</ion-label>
+    </ion-button>
+  </ion-fab>
+</ion-content>

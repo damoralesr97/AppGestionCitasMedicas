@@ -1,0 +1,27 @@
+<ion-app>
+  <ion-menu contentId="content1" side="start">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Mi Consultorio</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item routerLink="/citas-medico">Citas</ion-item>
+        <ion-item routerLink="/consultas-medico">Consultas</ion-item>
+        <ion-item routerLink="/pacientes-medico">Pacientes</ion-item>
+        <ion-item routerLink="/hist-clinicas-medico">Historias Clinicas</ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="content1" main></ion-router-outlet>
+</ion-app>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mi Consultorio</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="true"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

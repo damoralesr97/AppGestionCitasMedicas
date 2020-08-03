@@ -62,7 +62,56 @@ const routes: Routes = [
   {
     path: 'actualizar-contrasena',
     loadChildren: () => import('./pages/actualizar-contrasena/actualizar-contrasena.module').then( m => m.ActualizarContrasenaPageModule)
-  }
+  },
+  {
+    path: 'citas-solicitudes',
+    loadChildren: () => import('./pages/Medico/citas-solicitudes/citas-solicitudes.module').then( m => m.CitasSolicitudesPageModule)
+  },
+  {
+    path: 'consultas-medico',
+    loadChildren: () => import('./pages/Medico/consultas-medico/consultas-medico.module').then( m => m.ConsultasMedicoPageModule)
+  },
+  {
+    path: 'consulta-medico/:id',
+    loadChildren: () => import('./pages/Medico/consulta-medico/consulta-medico.module').then( m => m.ConsultaMedicoPageModule)
+  },
+  {
+    path: 'crear-consulta-medico/:id',
+    loadChildren: () => import('./pages/Medico/crear-consulta-medico/crear-consulta-medico.module').then( m => m.CrearConsultaMedicoPageModule)
+  },
+  {
+    path: 'crear-receta/:id',
+    loadChildren: () => import('./pages/Medico/crear-receta/crear-receta.module').then( m => m.CrearRecetaPageModule)
+  },
+  {
+    path: 'receta/:id',
+    loadChildren: () => import('./pages/Medico/receta/receta.module').then( m => m.RecetaPageModule)
+  },
+
+  {
+    path: 'citas-medico-atendidas',
+    loadChildren: () => import('./pages/Medico/citas-medico-atendidas/citas-medico-atendidas.module').then( m => m.CitasMedicoAtendidasPageModule)
+  },
+  {
+    path: 'citas-medico-por-atender',
+    loadChildren: () => import('./pages/Medico/citas-medico-por-atender/citas-medico-por-atender.module').then( m => m.CitasMedicoPorAtenderPageModule)
+  },
+  {
+    path: 'inicio-medico',
+    loadChildren: () => import('./pages/Medico/inicio-medico/inicio-medico.module').then( m => m.InicioMedicoPageModule)
+  },
+  {
+    path: 'citas-medico',
+    loadChildren: () => import('./pages/Medico/citas-medico/citas-medico.module').then( m => m.CitasMedicoPageModule)
+  },
+  {
+    path: 'cita-medico/:id',
+    loadChildren: () => import('./pages/Medico/cita-medico/cita-medico.module').then( m => m.CitaMedicoPageModule)
+  },
+  {
+    path: 'crear-cita-medico',
+    loadChildren: () => import('./pages/Medico/crear-cita-medico/crear-cita-medico.module').then( m => m.CrearCitaMedicoPageModule)
+  },
 ];
 
 @NgModule({

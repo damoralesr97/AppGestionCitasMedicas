@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Receta</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="(receta ) as receta">
+
+  <ion-card>
+    <ion-card-content>
+      <ion-label class="titulos">Indicaciones</ion-label><ion-input required type="text" [(ngModel)]="receta.indicaciones"></ion-input>
+      <ion-label class="titulos">Medicamento</ion-label><ion-input required type="text" [(ngModel)]="receta.medicamento"></ion-input>
+      <ion-label class="titulos">Fecha</ion-label><ion-datetime displayFormat="DD/MM/YYYY" readonly="true" required [(ngModel)]="receta.fecha"></ion-datetime>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-button (click)="actualizaReceta()">
+      <ion-label>Actualizar</ion-label>
+    </ion-button>
+  </ion-fab>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-button (click)="regresaCita()">
+      <ion-label>Hecho</ion-label>
+    </ion-button>
+  </ion-fab>
+  
+</ion-content>
