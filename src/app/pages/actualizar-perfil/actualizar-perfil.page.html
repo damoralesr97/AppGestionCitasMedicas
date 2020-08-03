@@ -13,7 +13,7 @@
 
         <ion-list>
 
-            <ion-item transparent>
+            <ion-item transparent *ngIf="usuario.data.cedula != null ">
                 <ion-icon slot="start" icon-small name="person-outline"></ion-icon>
                 <ion-input [(ngModel)]="usuario.data.cedula" placeholder="Cédula" type="number" name="cedula"></ion-input>
             </ion-item>
@@ -29,11 +29,11 @@
                 <ion-label>Fecha de nacimiento</ion-label>
                 <ion-input [(ngModel)]="usuario.data.fechaNac" type="date" name="fechaNac"></ion-input>
             </ion-item>
-            <ion-item transparent>
+            <ion-item transparent *ngIf="usuario.data.telefono != null && usuario.data.rol !='admin'">
                 <ion-icon slot="start" icon-small name="call-outline"></ion-icon>
                 <ion-input [(ngModel)]="usuario.data.telefono" placeholder="Teléfono" type="number" name="telefono"></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item *ngIf="usuario.data.tipoSangre != null && usuario.data.rol !='admin' " >
                 <ion-label>Tipo de sangre</ion-label>
                 <ion-select ok-text="Ok" cancel-text="Cancelar" name="tipoSangre" [(ngModel)]="usuario.data.tipoSangre">
                     <ion-select-option value="A+">A+</ion-select-option>

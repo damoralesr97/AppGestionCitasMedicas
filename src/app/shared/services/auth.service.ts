@@ -41,8 +41,6 @@ export class AuthService {
         this.angularFirestore.collection('usuarios').doc(res.uid).update({contrasena: password});
       });
       await this.presentAlert('Contraseña actualizada', 'Listo');
-      this.afAuth.signOut();
-      this.router.navigateByUrl('login');
     } catch (error) {
       await this.presentAlert(error.message, 'Error');
     }
@@ -65,6 +63,12 @@ export class AuthService {
       this.presentAlert(error.message, 'Error al iniciar sesión');
     }
   }
+
+  cerraSesion(){
+    this.afAuth.signOut();
+  }
+
+
 
   // Mostrar alertas
   async presentAlert(mensaje: string, titulo: string) {
