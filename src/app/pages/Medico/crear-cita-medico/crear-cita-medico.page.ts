@@ -1,3 +1,4 @@
+import { AuthService } from './../../../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -21,11 +22,19 @@ export class CrearCitaMedicoPage implements OnInit {
   apellidosUsuario: string;
   usuarioApellidosNombres: string;
   fechaActual: string
+  medicoId= '';
   
 
-  constructor(public router: Router,private medicoService: MedicoService, public alertController: AlertController) { }
+  constructor(public router: Router,private medicoService: MedicoService, public alertController: AlertController,private authSrv:AuthService,private medicaSrv: MedicoService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    (await this.authSrv.getUser()).subscribe(resp => {
+      this.medicaSrv.getMedico(resp.uid).subscribe((res) => {
+        if (res.payload.data() != null){
+          this.medicoId = res.payload.id;
+        }
+      });
+    });
     this.fechaActual = new Date().toISOString();
   }
 
@@ -63,6 +72,7 @@ export class CrearCitaMedicoPage implements OnInit {
     else
     {
       this.cita.pacienteUid=this.usuario.uid;
+      this.cita.medicoUid=this.medicoId;
       this.cita.estado="Por atender";
       this.cita.fecha=fechaFormato;
       this.medicoService.saveCita(this.cita);

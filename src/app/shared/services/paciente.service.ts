@@ -19,6 +19,10 @@ export class PacienteService {
     return this.angularFirestore.collection('usuarios').doc(uid).snapshotChanges();
   }
 
+  async getPaciente2(uid: string) {
+    return this.angularFirestore.collection<Paciente>('usuarios', ref => ref.where('uid', '==', uid)).snapshotChanges();
+  }
+
   // Obtener todos los pacientes
   getPacientes(): Observable<any[]>{
     return this.angularFirestore.collection('usuarios',
