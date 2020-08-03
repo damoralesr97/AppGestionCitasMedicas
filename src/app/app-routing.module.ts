@@ -43,6 +43,18 @@ const routes: Routes = [
     path: 'editar-medico-admin/:id',
     loadChildren: () => import('./pages/admin/medicos/editar-medico/editar-medico.module').then( m => m.EditarMedicoPageModule)
   },
+  {
+    path: 'ver-pacientes-admin',
+    loadChildren: () => import('./pages/admin/pacientes/ver-pacientes/ver-pacientes.module').then( m => m.VerPacientesPageModule)
+  },
+  {
+    path: 'crear-paciente-admin',
+    loadChildren: () => import('./pages/admin/pacientes/crear-paciente/crear-paciente.module').then( m => m.CrearPacientePageModule)
+  },
+  {
+    path: 'editar-paciente-admin/:id',
+    loadChildren: () => import('./pages/admin/pacientes/editar-paciente/editar-paciente.module').then( m => m.EditarPacientePageModule)
+  },
 ];
 
 @NgModule({

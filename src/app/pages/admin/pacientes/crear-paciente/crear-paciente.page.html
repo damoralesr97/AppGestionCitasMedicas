@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Registrar paciente</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <form #crarCitaForm="ngForm" (ngSubmit)="onSubmitTemplate()">
+
+        <ion-list>
+
+            <ion-item transparent>
+                <ion-icon slot="start" icon-small name="person-outline"></ion-icon>
+                <ion-input [(ngModel)]="paciente.cedula" placeholder="Cédula" type="number" name="cedula"></ion-input>
+            </ion-item>
+            <ion-item transparent>
+                <ion-icon slot="start" icon-small name="person-outline"></ion-icon>
+                <ion-input [(ngModel)]="paciente.nombres" placeholder="Nombres" type="text" name="nombres"></ion-input>
+            </ion-item>
+            <ion-item transparent>
+                <ion-icon slot="start" icon-small name="person-outline"></ion-icon>
+                <ion-input [(ngModel)]="paciente.apellidos" placeholder="Apellidos" type="text" name="apellidos"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Fecha de nacimiento</ion-label>
+                <ion-input [(ngModel)]="paciente.fechaNac" type="date" name="fechaNac"></ion-input>
+            </ion-item>
+            <ion-item transparent>
+                <ion-icon slot="start" icon-small name="call-outline"></ion-icon>
+                <ion-input [(ngModel)]="paciente.telefono" placeholder="Teléfono" type="number" name="telefono"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tipo de sangre</ion-label>
+                <ion-select ok-text="Ok" cancel-text="Cancelar" name="tipoSangre" [(ngModel)]="paciente.tipoSangre">
+                    <ion-select-option value="A+">A+</ion-select-option>
+                    <ion-select-option value="B+">B+</ion-select-option>
+                    <ion-select-option value="O+">O+</ion-select-option>
+                    <ion-select-option value="AB+">AB+</ion-select-option>
+                    <ion-select-option value="A-">A-</ion-select-option>
+                    <ion-select-option value="B-">B-</ion-select-option>
+                    <ion-select-option value="O-">O-</ion-select-option>
+                    <ion-select-option value="AB-">AB-</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Estado civil</ion-label>
+                <ion-select ok-text="Ok" cancel-text="Cancelar" name="estadoCivil" [(ngModel)]="paciente.estadoCivil">
+                    <ion-select-option value="Soltero">Soltero</ion-select-option>
+                    <ion-select-option value="Casdo">Casado</ion-select-option>
+                    <ion-select-option value="Divorciado">Divorciado</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item transparent>
+                <ion-icon slot="start" icon-small name="mail-outline"></ion-icon>
+                <ion-input [(ngModel)]="paciente.email" placeholder="Email" type="email" name="email"></ion-input>
+            </ion-item>
+            <ion-item transparent>
+                <ion-icon slot="start" icon-small name="lock-closed-outline"></ion-icon>
+                <ion-input [(ngModel)]="paciente.contrasena" placeholder="Contraseña" type="password" name="contrasena"></ion-input>
+            </ion-item>
+
+        </ion-list>
+
+        <ion-button expand="full" color="primary" type="submit" routerLink="/ver-pacientes-admin">Guardar</ion-button>
+
+    </form>
+
+</ion-content>

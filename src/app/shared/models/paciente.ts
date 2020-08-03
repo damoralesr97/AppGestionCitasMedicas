@@ -10,4 +10,5 @@ export class Paciente {
     email: string;
     contrasena: string;
     rol: string;
+    estado: string;
 }

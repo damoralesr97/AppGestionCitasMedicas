@@ -4,17 +4,25 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Paciente } from '../models/paciente';
 import { Cita } from '../models/cita';
 import { first } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PacienteService {
 
-  constructor(private afAuth: AngularFireAuth, private angularFirestore: AngularFirestore) { }
+  constructor(private afAuth: AngularFireAuth, private angularFirestore: AngularFirestore, private alertController: AlertController) { }
 
   // Obtener paciente
   getPaciente(uid: string){
     return this.angularFirestore.collection('usuarios').doc(uid).snapshotChanges();
+  }
+
+  // Obtener todos los pacientes
+  getPacientes(): Observable<any[]>{
+    return this.angularFirestore.collection('usuarios',
+      ref => ref.where('rol', '==', 'paciente').where('estado', '==', 'activo')).valueChanges();
   }
 
   // RegistrarPaciente
@@ -23,12 +31,22 @@ export class PacienteService {
       const pac = await this.afAuth.createUserWithEmailAndPassword(paciente.email, paciente.contrasena);
       paciente.uid = pac.user.uid;
       paciente.rol = 'paciente';
+      paciente.estado = 'activo';
       const param = JSON.parse(JSON.stringify(paciente));
       this.angularFirestore.collection('usuarios').doc(pac.user.uid).set(param);
-      return pac;
+      this.presentAlert('Paciente registrado exitosamente!');
     } catch (error) {
-      console.log('Error on register user', error);
-      return error;
+      this.presentAlert(error.message);
+    }
+  }
+
+  // Eliminar paciente
+  deletePaciente(paciente: Paciente) {
+    try{
+      this.angularFirestore.collection('usuarios').doc(paciente.uid).set(paciente);
+      this.presentAlert('Paciente eliminado');
+    } catch (error) {
+      this.presentAlert(error.message);
     }
   }
 
@@ -43,6 +61,27 @@ export class PacienteService {
   async getCitasPendientes(pacienteUid: string) {
     return this.angularFirestore.collection<Cita>('citas', ref => ref.where('estado', '==', 'PENDIENTE')
       .where('pacienteUid', '==', pacienteUid)).snapshotChanges();
+  }
+
+  // Actualizar paciente
+  updatePaciente(paciente: Paciente) {
+    try {
+      this.angularFirestore.collection('usuarios').doc(paciente.uid).set(paciente);
+      this.presentAlert('Paciente actualizado correctamente');
+    } catch (error) {
+      this.presentAlert(error.message);
+    }
+  }
+
+  // Mostrar alertas
+  async presentAlert(mensaje: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      subHeader: mensaje,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 }
