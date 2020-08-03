@@ -29,7 +29,8 @@ export class MedicoService {
 
   // Obtener medico
   async getMedico(medicoUid: string) {
-    return this.angularFirestore.collection('usuarios').doc(medicoUid).snapshotChanges();
+    //return this.angularFirestore.collection<Medico>('usuarios').doc(medicoUid).snapshotChanges();
+    return this.angularFirestore.collection('usuarios', ref => ref.where('uid', '==', medicoUid)).snapshotChanges();
   }
 
   // Obtener todos los medicos
