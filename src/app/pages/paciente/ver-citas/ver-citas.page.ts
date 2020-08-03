@@ -42,7 +42,7 @@ export class VerCitasPage implements OnInit {
   }
 
   async getMedico(medicoUid: string) {
-    const aux = await (await this.medicoSrv.getMedico(medicoUid)).pipe(first()).toPromise().then(resp => {
+    const aux = await (await this.medicoSrv.getMedico2(medicoUid)).pipe(first()).toPromise().then(resp => {
       return resp[0];
     });
     return aux.payload.doc.data().nombres + ' ' + aux.payload.doc.data().apellidos;

@@ -18,7 +18,7 @@ export class EditarMedicoPage implements OnInit {
 
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    (await this.medicoSrv.getMedico(id)).subscribe((res) => {
+    (await this.medicoSrv.getMedico2(id)).subscribe((res) => {
       if (res[0].payload.doc.data() != null){
         this.medico.id = res[0].payload.doc.id;
         this.medico.data = res[0].payload.doc.data();
