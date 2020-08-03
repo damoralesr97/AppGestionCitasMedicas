@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Paciente } from 'src/app/shared/models/paciente';
+import { PacienteService } from '../../../shared/services/paciente.service';
+import { AuthService } from '../../../shared/services/auth.service';
+import { PopoverMenuComponent } from '../../../components/popover-menu/popover-menu.component';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -14,14 +18,29 @@ export class HomePage implements OnInit {
     data: {} as Paciente
   };
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) { }
+  // tslint:disable-next-line: max-line-length
+  constructor(private afAuth: AngularFireAuth, private router: Router, private pacienteSrv: PacienteService, private authSrv: AuthService, private popoverCtrl: PopoverController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    (await this.authSrv.getUser()).subscribe(resp => {
+      this.pacienteSrv.getPaciente(resp.uid).subscribe((res) => {
+        if (res.payload.data() != null){
+          this.paciente.id = res.payload.id;
+          this.paciente.data = res.payload.data();
+        } else {
+          this.paciente.data = {} as Paciente;
+        }
+      });
+    });
   }
 
-  logout(){
-    this.afAuth.signOut();
-    this.router.navigateByUrl('login');
+  async showPop(event){
+    const popover = await this.popoverCtrl.create({
+      component: PopoverMenuComponent,
+      event,
+      translucent: true
+    });
+    await popover.present();
   }
 
 }

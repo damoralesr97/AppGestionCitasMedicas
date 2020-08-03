@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Actualizar contraseña</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <form #crarCitaForm="ngForm" (ngSubmit)="updatePassword()">
+
+        <ion-list>
+
+            <ion-item transparent>
+                <ion-icon slot="start" icon-small name="lock-closed-outline"></ion-icon>
+                <ion-input [(ngModel)]="contrasena.oldPass" placeholder="Contraseña anterior" type="password" name="oldCont"></ion-input>
+            </ion-item>
+            <ion-item transparent>
+                <ion-icon slot="start" icon-small name="lock-closed-outline"></ion-icon>
+                <ion-input [(ngModel)]="contrasena.newPass" placeholder="Nueva contraseña" type="password" name="newCont"></ion-input>
+            </ion-item>
+            <ion-item transparent>
+                <ion-icon slot="start" icon-small name="lock-closed-outline"></ion-icon>
+                <ion-input placeholder="Repetir nueva contraseña" type="password" name="repNewCont"></ion-input>
+            </ion-item>
+
+        </ion-list>
+
+        <ion-button expand="full" color="primary" type="submit">Actualizar contraseña</ion-button>
+
+    </form>
+
+</ion-content>

@@ -18,6 +18,36 @@ export class AuthService {
     return this.afAuth.authState;
   }
 
+  // Obtener informacion del usuario en ela sesion
+  getDataUser(uid: string) {
+    return this.angularFirestore.collection('usuarios').doc(uid).snapshotChanges();
+  }
+
+  // Actualizar informacion de usuario
+  updateUser(usuario) {
+    try {
+      this.angularFirestore.collection('usuarios').doc(usuario.uid).set(usuario);
+      this.presentAlert('Información actualizada correctamente', 'Listo');
+    } catch (error) {
+      this.presentAlert(error.message, 'Error');
+    }
+  }
+
+  // Actualizar contrasena
+  async updatePassword(password: string) {
+    try{
+      (await this.afAuth.currentUser).updatePassword(password);
+      (await this.getUser()).subscribe(res => {
+        this.angularFirestore.collection('usuarios').doc(res.uid).update({contrasena: password});
+      });
+      await this.presentAlert('Contraseña actualizada', 'Listo');
+      this.afAuth.signOut();
+      this.router.navigateByUrl('login');
+    } catch (error) {
+      await this.presentAlert(error.message, 'Error');
+    }
+  }
+
   // IniciarSesion
   async onLogin(user: User) {
     try{
@@ -32,15 +62,15 @@ export class AuthService {
         }
       });
     } catch (error) {
-      this.presentAlert(error.message);
+      this.presentAlert(error.message, 'Error al iniciar sesión');
     }
   }
 
   // Mostrar alertas
-  async presentAlert(mensaje: string) {
+  async presentAlert(mensaje: string, titulo: string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Error al iniciar sesión',
+      header: titulo,
       subHeader: mensaje,
       buttons: ['OK']
     });

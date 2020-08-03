@@ -55,6 +55,14 @@ const routes: Routes = [
     path: 'editar-paciente-admin/:id',
     loadChildren: () => import('./pages/admin/pacientes/editar-paciente/editar-paciente.module').then( m => m.EditarPacientePageModule)
   },
+  {
+    path: 'actualizar-perfil',
+    loadChildren: () => import('./pages/actualizar-perfil/actualizar-perfil.module').then( m => m.ActualizarPerfilPageModule)
+  },
+  {
+    path: 'actualizar-contrasena',
+    loadChildren: () => import('./pages/actualizar-contrasena/actualizar-contrasena.module').then( m => m.ActualizarContrasenaPageModule)
+  }
 ];
 
 @NgModule({
