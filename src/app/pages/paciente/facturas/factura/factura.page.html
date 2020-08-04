@@ -1,0 +1,29 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Factura</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <ion-card>
+        <ion-card-content>
+            <ion-label><strong>Factura</strong> {{factura.data.uid}}</ion-label><br>
+            <ion-label><strong>Apellidos</strong> {{paciente.data.apellidos}}</ion-label><br>
+            <ion-label><strong>Nombres</strong> {{paciente.data.nombres}}</ion-label><br>
+            <ion-label><strong>Concepto</strong> {{factura.data.concepto}}</ion-label><br>
+            <ion-label><strong>Fecha</strong> {{factura.data.fecha}}</ion-label><br>
+            <ion-label><strong>Subtotal 0</strong> {{factura.data.subtotalCero}}</ion-label><br>
+            <ion-label><strong>Subtotal Iva</strong> {{factura.data.subtotalIva}}</ion-label><br>
+            <ion-label><strong>Total</strong> {{factura.data.total}}</ion-label><br>
+            <ion-label><strong>Forma de pago</strong> {{factura.data.formaPago}}</ion-label>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-button (click)="downloadPdf()" color="success" class="ion-buttom-class" shape="round" fill="solid" size="large" expand="block">Descargar Factura</ion-button>
+
+
+</ion-content>

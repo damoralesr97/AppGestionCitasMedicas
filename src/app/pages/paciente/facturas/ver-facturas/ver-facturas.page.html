@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Mis Facturas</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <ion-list *ngIf="facturas.length != 0">
+        <ion-list-header>Citas aprobadas</ion-list-header>
+        <ion-item *ngFor="let factura of facturas">
+            <ion-label (click)="showFactura(factura.uid)">
+                <h3><strong>Concepto </strong>{{factura.concepto}}</h3>
+                <h3><strong>Fecha </strong>{{factura.fecha}}</h3>
+                <h3><strong>Total $</strong>{{factura.total}}</h3>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list *ngIf="facturas.length == 0">
+        <ion-list-header>No tiene facturas</ion-list-header>
+    </ion-list>
+</ion-content>

@@ -14,6 +14,8 @@ import { LoadingController } from '@ionic/angular';
 })
 export class VerCitasPage implements OnInit {
   citasPendientes: any[] = [];
+  citasAprobadas: any[] = [];
+  citasAtendidas: any[] = [];
   medico: Medico;
   loading: any;
 
@@ -23,6 +25,8 @@ export class VerCitasPage implements OnInit {
   async ngOnInit() {
     this.presentLoading();
     this.citasPendientes = [];
+    this.citasAprobadas = [];
+    this.citasAtendidas = [];
     const aux = await (await this.authSrv.getUser()).pipe(first()).toPromise().then(resp => {
       return resp;
     });
@@ -31,7 +35,23 @@ export class VerCitasPage implements OnInit {
         this.citasPendientes.push(cita.payload.doc.data());
       });
     });
+    await (await this.pacienteSrv.getCitasAprobadas(aux.uid)).pipe(first()).toPromise().then( resp => {
+      resp.forEach((cita) => {
+        this.citasAprobadas.push(cita.payload.doc.data());
+      });
+    });
+    await (await this.pacienteSrv.getCitasAtendidas(aux.uid)).pipe(first()).toPromise().then( resp => {
+      resp.forEach((cita) => {
+        this.citasAtendidas.push(cita.payload.doc.data());
+      });
+    });
     for (let a of this.citasPendientes) {
+      a.nombres = await this.getMedico(a.medicoUid);
+    }
+    for (let a of this.citasAprobadas) {
+      a.nombres = await this.getMedico(a.medicoUid);
+    }
+    for (let a of this.citasAtendidas) {
       a.nombres = await this.getMedico(a.medicoUid);
     }
     this.loading.dismiss();

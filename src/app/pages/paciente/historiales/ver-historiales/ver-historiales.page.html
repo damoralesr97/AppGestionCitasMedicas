@@ -1,0 +1,23 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Historiales médicos</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list *ngIf="historiales.length != 0">
+        <ion-list-header>Mis historiales médicos</ion-list-header>
+        <ion-item *ngFor="let historial of historiales">
+            <ion-label (click)="showHistorial(historial.uid)">
+                <h2><strong>Síntomas </strong>{{historial.sintomas}}</h2>
+                <h3><strong>Fecha </strong>{{historial.fecha}}</h3>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list *ngIf="historiales.length == 0">
+        <ion-list-header>No tiene historiales médicos</ion-list-header>
+    </ion-list>
+</ion-content>

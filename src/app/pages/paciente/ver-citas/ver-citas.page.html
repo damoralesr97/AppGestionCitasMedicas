@@ -9,18 +9,55 @@
 
 <ion-content class="ion-padding">
 
-    <ion-list>
+    <ion-list *ngIf="citasAprobadas.length != 0">
+        <ion-list-header>Citas aprobadas</ion-list-header>
+        <ion-item *ngFor="let cita of citasAprobadas">
+            <ion-avatar slot="start">
+                <ion-icon style="zoom:2.5;" name="alert-outline"></ion-icon>
+            </ion-avatar>
+            <ion-label>
+                <h2>{{cita.nombres}}</h2>
+                <h3>{{cita.hora}}</h3>
+                <h3>{{cita.fecha}}</h3>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list *ngIf="citasAprobadas.length == 0">
+        <ion-list-header>No tiene citas aprobadas</ion-list-header>
+    </ion-list>
+    <br>
+    <ion-list *ngIf="citasPendientes.length != 0">
         <ion-list-header>Citas Pendientes de Aprobación</ion-list-header>
         <ion-item *ngFor="let cita of citasPendientes">
             <ion-avatar slot="start">
                 <ion-icon style="zoom:2.5;" name="hourglass-outline"></ion-icon>
             </ion-avatar>
             <ion-label>
-                <h1>{{cita.nombres}}</h1>
+                <h2>{{cita.nombres}}</h2>
                 <h3>{{cita.hora}}</h3>
                 <h3>{{cita.fecha}}</h3>
             </ion-label>
         </ion-item>
+    </ion-list>
+    <ion-list *ngIf="citasPendientes.length == 0">
+        <ion-list-header>No tiene citas pendientes de aprobación</ion-list-header>
+    </ion-list>
+    <br>
+    <ion-list *ngIf="citasAtendidas.length != 0">
+        <ion-list-header>Citas ya atendidas</ion-list-header>
+        <ion-item *ngFor="let cita of citasAtendidas">
+            <ion-avatar slot="start">
+                <ion-icon style="zoom:2.5;" name="checkmark-outline"></ion-icon>
+            </ion-avatar>
+            <ion-label>
+                <h2>{{cita.nombres}}</h2>
+                <h3>{{cita.hora}}</h3>
+                <h3>{{cita.fecha}}</h3>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list *ngIf="citasAtendidas.length == 0">
+        <ion-list-header>No tiene citas ya atendidas</ion-list-header>
     </ion-list>
 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="primary" (click)="nuevaCita()">

@@ -67,6 +67,43 @@ export class PacienteService {
       .where('pacienteUid', '==', pacienteUid)).snapshotChanges();
   }
 
+  // Obtener Citas Aprobadas
+  async getCitasAprobadas(pacienteUid: string) {
+    return this.angularFirestore.collection<Cita>('citas', ref => ref.where('estado', '==', 'Por atender')
+      .where('pacienteUid', '==', pacienteUid)).snapshotChanges();
+  }
+
+  // Obtener Citas Atendidas
+  async getCitasAtendidas(pacienteUid: string) {
+    return this.angularFirestore.collection<Cita>('citas', ref => ref.where('estado', '==', 'Atendido')
+      .where('pacienteUid', '==', pacienteUid)).snapshotChanges();
+  }
+
+  // Obtener Facturas
+  async getFacturas(pacienteUid: string) {
+    return this.angularFirestore.collection<Cita>('facturas', ref => ref.where('usuarioUid', '==', pacienteUid)).snapshotChanges();
+  }
+
+  // Obtener factura
+  getFactura(uid: string){
+    return this.angularFirestore.collection('facturas').doc(uid).snapshotChanges();
+  }
+
+  // Obtener Historiales
+  async getHistoriales(pacienteUid: string) {
+    return this.angularFirestore.collection<Cita>('consultas', ref => ref.where('pacienteUid', '==', pacienteUid)).snapshotChanges();
+  }
+
+  // Obtener historial
+  getHistorial(uid: string){
+    return this.angularFirestore.collection('consultas').doc(uid).snapshotChanges();
+  }
+
+  // Obtener receta
+  getReceta(uid: string){
+    return this.angularFirestore.collection('recetas', ref => ref.where('consultaUid', '==', uid)).snapshotChanges();
+  }
+
   // Actualizar paciente
   updatePaciente(paciente: Paciente) {
     try {

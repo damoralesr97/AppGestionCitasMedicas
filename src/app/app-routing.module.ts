@@ -87,7 +87,6 @@ const routes: Routes = [
     path: 'receta/:id',
     loadChildren: () => import('./pages/Medico/receta/receta.module').then( m => m.RecetaPageModule)
   },
-
   {
     path: 'citas-medico-atendidas',
     loadChildren: () => import('./pages/Medico/citas-medico-atendidas/citas-medico-atendidas.module').then( m => m.CitasMedicoAtendidasPageModule)
@@ -119,6 +118,22 @@ const routes: Routes = [
   {
     path: 'ver-facturas',
     loadChildren: () => import('./pages/admin/facturas/ver-facturas/ver-facturas.module').then( m => m.VerFacturasPageModule)
+  },
+  {
+    path: 'ver-facturas-paciente',
+    loadChildren: () => import('./pages/paciente/facturas/ver-facturas/ver-facturas.module').then( m => m.VerFacturasPageModule)
+  },
+  {
+    path: 'factura-paciente/:id',
+    loadChildren: () => import('./pages/paciente/facturas/factura/factura.module').then( m => m.FacturaPageModule)
+  },
+  {
+    path: 'ver-historiales-paciente',
+    loadChildren: () => import('./pages/paciente/historiales/ver-historiales/ver-historiales.module').then( m => m.VerHistorialesPageModule)
+  },
+  {
+    path: 'historial-paciente/:id',
+    loadChildren: () => import('./pages/paciente/historiales/historial/historial.module').then( m => m.HistorialPageModule)
   }
 ];
 

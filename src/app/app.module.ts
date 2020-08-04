@@ -15,6 +15,10 @@ import { environment } from './../environments/environment';
 
 import { ComponentsModule } from './components/components.module';
 
+import { File } from '@ionic-native/file/ngx';
+import { FileOpener} from '@ionic-native/file-opener/ngx';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -29,7 +33,9 @@ import { ComponentsModule } from './components/components.module';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    File,
+    FileOpener
   ],
   bootstrap: [AppComponent]
 })
