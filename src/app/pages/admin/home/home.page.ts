@@ -1,3 +1,5 @@
+import { Admin } from './../../../shared/models/admin';
+import { AuthService } from './../../../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { PopoverMenuComponent } from '../../../components/popover-menu/popover-menu.component';
@@ -9,9 +11,24 @@ import { PopoverMenuComponent } from '../../../components/popover-menu/popover-m
 })
 export class HomePage implements OnInit {
 
-  constructor( private popoverCtrl: PopoverController) { }
+  admin: any={
+    id:'',
+    data: {} as Admin
+  };
 
-  ngOnInit() {
+  constructor( private popoverCtrl: PopoverController,private authSrv:AuthService) { }
+
+  async ngOnInit() {
+    (await this.authSrv.getUser()).subscribe(resp => {
+      this.authSrv.getAdmin(resp.uid).subscribe((res) => {
+        if (res.payload.data() != null){
+          this.admin.id = res.payload.id;
+          this.admin.data = res.payload.data();
+        } else {
+          this.admin.data = {} as Admin;
+        }
+      });
+    });
   }
 
   async showPop(event){

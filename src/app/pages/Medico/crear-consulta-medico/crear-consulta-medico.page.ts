@@ -82,6 +82,7 @@ export class CrearConsultaMedicoPage implements OnInit {
             this.factura.iva=Number(Number(this.consulta.total)*0.12);
             this.factura.subtotalIva=Number(Number(this.consulta.total)+Number(this.factura.iva));
             this.factura.formaPago="efectivo";
+            this.factura.estado="activa";
             this.factura.fecha=this.consulta.fecha;
             this.factura.total=Number(Number(this.consulta.total)+ Number(this.factura.iva));
 

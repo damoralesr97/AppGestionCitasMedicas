@@ -10,17 +10,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let cita of citas">
-        <ion-label>
-            <h2>Paciente: {{cita.paciente}}</h2>
-            <h2>Medico: {{cita.medico}}</h2>
-            <h3>{{cita.fecha}}</h3>
-            <h3>{{cita.hora}}</h3>
-            <h3>{{cita.estado}}</h3>
-        </ion-label>
-    </ion-item>
-</ion-list>
-
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item-sliding *ngFor="let cita of citas">
+            <ion-item>
+                <ion-label (click)="showCita(cita.uid)">
+                    <h2>Paciente: {{cita.paciente}}</h2>
+                    <h2>Medico: {{cita.medico}}</h2>
+                    <h3>{{cita.fecha}}</h3>
+                    <h3>{{cita.hora}}</h3>
+                    <h3>{{cita.estado}}</h3>
+                </ion-label>
+            </ion-item>
+            <ion-item-options side="end" *ngIf="cita.estado != 'Atendido'">
+                <ion-item-option color="danger" expandable  (click)="deleteCitas(cita)">
+                    <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
 </ion-content>

@@ -8,6 +8,7 @@ export class Factura {
     subtotalIva: number;
     iva: number;
     total: number;
+    estado: string;
     formaPago: string;
     usuarioUid: string;
 }

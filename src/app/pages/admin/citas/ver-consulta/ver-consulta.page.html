@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Consulta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Datos de la consulta</ion-card-title>
+      <ion-card-subtitle>Generado el: {{consulta.data.fecha}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <strong>Antecedentes: </strong><p style="font-size: small;">{{consulta.data.antecedentes}}</p>
+      <strong>Sintomas presentados: </strong><p style="font-size: small;">{{consulta.data.sintomas}}</p>
+      <strong>Valor a pagar de la consulta: </strong><p style="font-size: small; "> ${{consulta.data.total}}</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

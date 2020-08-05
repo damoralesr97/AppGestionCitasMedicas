@@ -1,3 +1,5 @@
+import { Cita } from './../../../../shared/models/cita';
+import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { PacienteService } from './../../../../shared/services/paciente.service';
 import { MedicoService } from './../../../../shared/services/medico.service';
@@ -16,7 +18,7 @@ export class VerCitasPage implements OnInit {
   citas: any[]=[];
   loading: any;
 
-  constructor(private citaService: CitaService,private medicoSrv: MedicoService,private pacienteSrv:PacienteService, private loadingCtrl: LoadingController) { }
+  constructor(private citaService: CitaService,private medicoSrv: MedicoService,private pacienteSrv:PacienteService, private loadingCtrl: LoadingController,private router:Router) { }
 
   async ngOnInit() {
     this.presentLoading();
@@ -40,7 +42,6 @@ export class VerCitasPage implements OnInit {
   }
 
   async getPaciente(uid: string){
-    console.log(uid);
     const aux = await (await this.pacienteSrv.getPaciente2(uid)).pipe(first()).toPromise().then(resp => {
       return resp[0];
     });
@@ -54,7 +55,13 @@ export class VerCitasPage implements OnInit {
     return this.loading.present();
   }
 
-  trackByFn(index, obj) {
-    return obj.uid;
+  showCita(uid: string){
+    this.router.navigate([`ver-cita/${uid}`]);
+  }
+
+  deleteCitas(cita: Cita){
+    cita.estado='eliminada';
+    this.citaService.deleteCita(cita);
+
   }
 }

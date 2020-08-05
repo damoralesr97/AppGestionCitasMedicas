@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cita seleccionada</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Datos del Medico</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-icon slot="start" icon-small name="person-outline"></ion-icon>
+      <strong> Cedula:</strong> {{medico.data.cedula}}
+      <br>
+      <ion-icon slot="start" icon-small name="person-outline"></ion-icon>
+      <strong> Nombre:</strong> {{medico.data.nombres}} {{medico.data.apellidos}}
+      <br>
+      <ion-icon slot="start" icon-small name="call-outline"></ion-icon>
+      <strong> Telefono:</strong> {{medico.data.telefono}}
+      <br>
+      <ion-icon slot="start" icon-small name="mail-outline"></ion-icon>
+      <strong> Correo:</strong> {{medico.data.email}}
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Datos del Paciente</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-icon slot="start" icon-small name="person-outline"></ion-icon>
+      <strong> Cedula:</strong> {{paciente.data.cedula}}
+      <br>
+      <ion-icon slot="start" icon-small name="person-outline"></ion-icon>
+      <strong> Nombre:</strong> {{paciente.data.nombres}} {{paciente.data.apellidos}}
+      <br>
+      <ion-icon slot="start" icon-small name="call-outline"></ion-icon>
+      <strong> Telefono:</strong> {{paciente.data.telefono}}
+      <br>
+      <ion-icon slot="start" icon-small name="mail-outline"></ion-icon>
+      <strong> Correo:</strong> {{paciente.data.email}}
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Detalle de la Cita</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-icon slot="start" icon-small name="calendar-outline"></ion-icon>
+      <strong> Fecha:</strong> {{cita.data.fecha}}
+      <br>
+      <ion-icon slot="start" icon-small name="time-outline"></ion-icon>
+      <strong> Hora:</strong> {{cita.data.hora}} 
+      <br>
+      <ion-icon slot="start" icon-small name="mail-outline"></ion-icon>
+      <strong> Estado:</strong> {{cita.data.estado}}
+      <br>
+      <ion-button size="block" color="primary" (click)="showCita(cita.data.uid)" *ngIf="cita.data.estado != 'Atendido'" >Editar cita médica</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Datos médicos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <strong>Tipo de sangre del paciente:</strong> {{paciente.data.tipoSangre}}
+      <br>
+      <strong>Sintomas:</strong> {{cita.data.sintomas}} 
+    </ion-card-content>
+  </ion-card>
+    
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Acciones de la cita</ion-card-title>
+      <ion-label *ngIf="cita.data.estado != 'Atendido'"> La cita aun no se ha atendido por tanto las acciones no estan disponibles</ion-label>
+    </ion-card-header>
+    
+    <ion-card-content *ngIf="cita.data.estado == 'Atendido'">
+      <ion-button size="full" color="success" (click)="showReceta(cita.data.uid)" ><ion-icon name="beaker-outline"></ion-icon>  receta</ion-button>
+      <ion-button size="full" color="primary" (click)="showConsulta(cita.data.uid)"> <ion-icon name="book-outline"></ion-icon>   consulta</ion-button>
+      <ion-button size="full" color="danger"  (click)="showFactura(cita.data.uid)"><ion-icon name="document-outline"></ion-icon> Factura</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

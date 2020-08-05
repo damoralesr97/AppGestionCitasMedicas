@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Factura de la Cita</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-label *ngIf="factura.data.estado == 'anulado'">La factura de esta cita fue anulada, contactar con el administrador</ion-label>
+  <ion-card *ngIf="factura.data.estado != 'anulado'">
+    <ion-card-header>
+      <ion-card-title>Datos de Factura</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-icon slot="start" icon-small name="person-outline"></ion-icon>
+      <strong> Cedula:</strong> {{paciente.data.cedula}}
+      <br>
+      <ion-icon slot="start" icon-small name="person-outline"></ion-icon>
+      <strong> Nombre:</strong> {{paciente.data.nombres}} {{paciente.data.apellidos}}
+      <br>
+      <ion-icon slot="start" icon-small name="call-outline"></ion-icon>
+      <strong> Telefono:</strong> {{paciente.data.telefono}}
+      <br>
+      <ion-icon slot="start" icon-small name="mail-outline"></ion-icon>
+      <strong> Correo:</strong> {{paciente.data.email}}
+      <br>
+      <ion-icon slot="start" icon-small name="calendar-outline"></ion-icon>
+      <strong> Fecha:</strong> {{factura.data.fecha}}
+      <br>
+      <ion-icon slot="start" icon-small name="card-outline"></ion-icon>
+      <strong> Tipo de pago:</strong> {{factura.data.formaPago}}
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="factura.data.estado != 'anulado'">
+    <ion-card-header>
+      <ion-card-title>Descrpción</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{factura.data.concepto}}
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="factura.data.estado != 'anulado'">
+    <ion-card-header>
+    </ion-card-header>
+    <ion-card-content>
+      <strong>Subtotal:  </strong> {{factura.data.subtotalCero}}
+      <br>
+      <strong>Iva (12%): </strong> {{factura.data.iva}}
+      <br>
+      <strong>Total :    </strong> {{factura.data.total}}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
