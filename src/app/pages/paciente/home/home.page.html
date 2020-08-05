@@ -37,6 +37,7 @@
 <ion-content class="ion-padding">
 
     <ion-card>
+        <img [src]="paciente.data.img" *ngIf="paciente.data.img" />
         <ion-card-header>
             <ion-card-subtitle>Paciente</ion-card-subtitle>
             <ion-card-title>{{paciente.data.nombres + ' ' + paciente.data.apellidos}}</ion-card-title>

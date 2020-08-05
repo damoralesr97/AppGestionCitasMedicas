@@ -19,7 +19,7 @@ export class HomePage implements OnInit {
   };
 
   // tslint:disable-next-line: max-line-length
-  constructor(private afAuth: AngularFireAuth, private router: Router, private pacienteSrv: PacienteService, private authSrv: AuthService, private popoverCtrl: PopoverController) { }
+  constructor(private pacienteSrv: PacienteService, private authSrv: AuthService, private popoverCtrl: PopoverController) { }
 
   async ngOnInit() {
     (await this.authSrv.getUser()).subscribe(resp => {

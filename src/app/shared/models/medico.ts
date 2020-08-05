@@ -10,4 +10,5 @@ export class Medico {
     contrasena: string;
     rol: string;
     estado: string;
+    img: string;
 }

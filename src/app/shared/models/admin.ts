@@ -6,4 +6,5 @@ export class Admin{
     fechaNac: string;
     rol: string;
     contrasena: string;
+    img: string;
 }

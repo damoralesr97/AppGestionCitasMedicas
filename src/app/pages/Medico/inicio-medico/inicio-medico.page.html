@@ -1,27 +1,53 @@
-<ion-app>
-  <ion-menu contentId="content1" side="start">
+<ion-menu side="start" menuId="menuMedico" contentId="medico">
     <ion-header>
-      <ion-toolbar>
-        <ion-title>Mi Consultorio</ion-title>
-      </ion-toolbar>
+        <ion-toolbar>
+            <ion-title>Médico</ion-title>
+        </ion-toolbar>
     </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-item routerLink="/citas-medico">Citas</ion-item>
-        <ion-item routerLink="/consultas-medico">Consultas</ion-item>
-        <ion-item routerLink="/pacientes-medico">Pacientes</ion-item>
-        <ion-item routerLink="/hist-clinicas-medico">Historias Clinicas</ion-item>
-      </ion-list>
+    <ion-content class="ion-no-border">
+        <ion-list>
+            <ion-menu-toggle>
+                <ion-item routerLink="/citas-medico">
+                    <ion-icon slot="start" name="calendar-outline"></ion-icon>Citas</ion-item>
+                <ion-item routerLink="/consultas-medico">
+                    <ion-icon slot="start" name="book-outline"></ion-icon>Consultas</ion-item>
+            </ion-menu-toggle>
+        </ion-list>
     </ion-content>
-  </ion-menu>
-  <ion-router-outlet id="content1" main></ion-router-outlet>
-</ion-app>
+</ion-menu>
+
+<ion-router-outlet id="medico"></ion-router-outlet>
 
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Mi Consultorio</ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button autoHide="true"></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar class="ion-no-border" color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button menu="menuMedico"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Inicio</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="showPop($event)">
+                <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
+
+<ion-content class="ion-padding">
+
+    <ion-card>
+        <img [src]="medico.data.img" *ngIf="medico.data.img" />
+        <ion-card-header>
+            <ion-card-subtitle>Médico</ion-card-subtitle>
+            <ion-card-title>{{medico.data.nombres + ' ' + medico.data.apellidos}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            <strong>Cédula:</strong> {{medico.data.cedula}} <br>
+            <strong>Fecha de nacimiento:</strong> {{medico.data.fechaNac}} <br>
+            <strong>Teléfono:</strong> {{medico.data.telefono}} <br>
+            <strong>Tipo de sangre:</strong> {{medico.data.tipoSangre}} <br>
+            <strong>Email:</strong> {{medico.data.email}} <br>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

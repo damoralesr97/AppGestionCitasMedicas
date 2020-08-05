@@ -26,7 +26,10 @@ export class AuthService {
   // Actualizar informacion de usuario
   updateUser(usuario) {
     try {
-      this.angularFirestore.collection('usuarios').doc(usuario.uid).set(usuario);
+      this.angularFirestore.collection('usuarios').doc(usuario.data.uid).set(usuario.data);
+      if (usuario.img !== ''){
+        this.angularFirestore.collection('usuarios').doc(usuario.data.uid).update({img: usuario.img});
+      }
       this.presentAlert('Información actualizada correctamente', 'Listo');
     } catch (error) {
       this.presentAlert(error.message, 'Error');

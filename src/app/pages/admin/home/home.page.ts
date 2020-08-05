@@ -11,12 +11,12 @@ import { PopoverMenuComponent } from '../../../components/popover-menu/popover-m
 })
 export class HomePage implements OnInit {
 
-  admin: any={
-    id:'',
+  admin: any = {
+    id: '',
     data: {} as Admin
   };
 
-  constructor( private popoverCtrl: PopoverController,private authSrv:AuthService) { }
+  constructor( private popoverCtrl: PopoverController, private authSrv: AuthService) { }
 
   async ngOnInit() {
     (await this.authSrv.getUser()).subscribe(resp => {

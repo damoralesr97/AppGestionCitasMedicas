@@ -39,6 +39,7 @@
 <ion-content>
 
     <ion-card>
+        <img [src]="admin.data.img" *ngIf="admin.data.img" />
         <ion-card-header>
             <ion-card-subtitle>Bienvenido Administrador</ion-card-subtitle>
             <ion-card-title>{{admin.data.nombres + ' ' + admin.data.apellidos}}</ion-card-title>

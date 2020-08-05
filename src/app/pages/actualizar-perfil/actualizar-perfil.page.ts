@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Paciente } from 'src/app/shared/models/paciente';
 import { AuthService } from '../../shared/services/auth.service';
-import { PacienteService } from '../../shared/services/paciente.service';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Medico } from 'src/app/shared/models/medico';
-import { Router } from '@angular/router';
+import { Camera } from '@ionic-native/camera/ngx';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { tap, finalize, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-actualizar-perfil',
@@ -14,10 +12,12 @@ import { Router } from '@angular/router';
 export class ActualizarPerfilPage implements OnInit {
   usuario: any = {
     id: '',
-    data: {}
+    data: {},
+    img: ''
   };
+  image: any;
 
-  constructor(private authSrv: AuthService, private angularFirestore: AngularFirestore, private router: Router) { }
+  constructor(private authSrv: AuthService, private camera: Camera, private storage: AngularFireStorage) { }
 
   async ngOnInit() {
     (await this.authSrv.getUser()).subscribe(resp => {
@@ -33,7 +33,65 @@ export class ActualizarPerfilPage implements OnInit {
   }
 
   actualizarUsuario() {
-    this.authSrv.updateUser(this.usuario.data);
+    if (this.image != null) {
+      try {
+        const path = `profilePictures/${new Date().getTime()}`;
+        const ref = this.storage.ref(path);
+
+        const task = ref.putString(this.image, 'data_url');
+
+        task.snapshotChanges().pipe(
+          finalize(() => {
+            const downloadURL = ref.getDownloadURL();
+            downloadURL.subscribe(url => {
+              this.usuario.img = url;
+              this.authSrv.updateUser(this.usuario);
+            });
+          })
+        )
+        .subscribe();
+      } catch (error) {
+        console.error('error', JSON.stringify(error));
+      }
+    } else{
+      this.authSrv.updateUser(this.usuario);
+    }
+  }
+
+  sacarCamara() {
+    this.camera.getPicture({
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.CAMERA,
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit: false,
+      encodingType: this.camera.EncodingType.JPEG,
+      targetHeight: 1024,
+      targetWidth: 1024,
+      correctOrientation: true,
+      saveToPhotoAlbum: true
+    }).then(resultado => {
+      this.image = 'data:image/jpeg;base64,' + resultado;
+    }).catch(error => {
+      console.log(error.message);
+    });
+  }
+
+  tomarGaleria() {
+    this.camera.getPicture({
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit: false,
+      encodingType: this.camera.EncodingType.JPEG,
+      targetHeight: 1024,
+      targetWidth: 1024,
+      correctOrientation: true,
+      saveToPhotoAlbum: true
+    }).then(resultado => {
+      this.image = 'data:image/jpeg;base64,' + resultado;
+    }).catch(error => {
+      console.log(error.message);
+    });
   }
 
 }
