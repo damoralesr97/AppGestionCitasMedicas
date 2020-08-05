@@ -70,6 +70,11 @@ export class AuthService {
     this.afAuth.signOut();
   }
 
+   // Obtener administrador
+   getAdmin(uid: string){
+    return this.angularFirestore.collection('usuarios').doc(uid).snapshotChanges();
+  }
+
 
 
   // Mostrar alertas

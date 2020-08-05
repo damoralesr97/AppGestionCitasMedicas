@@ -134,6 +134,30 @@ const routes: Routes = [
   {
     path: 'historial-paciente/:id',
     loadChildren: () => import('./pages/paciente/historiales/historial/historial.module').then( m => m.HistorialPageModule)
+  },
+  {
+    path: 'ver-cita/:id',
+    loadChildren: () => import('./pages/admin/citas/ver-cita/ver-cita.module').then( m => m.VerCitaPageModule)
+  },
+  {
+    path: 'ver-receta/:id',
+    loadChildren: () => import('./pages/admin/citas/ver-receta/ver-receta.module').then( m => m.VerRecetaPageModule)
+  },
+  {
+    path: 'ver-consulta/:id',
+    loadChildren: () => import('./pages/admin/citas/ver-consulta/ver-consulta.module').then( m => m.VerConsultaPageModule)
+  },
+  {
+    path: 'ver-factura/:id',
+    loadChildren: () => import('./pages/admin/facturas/ver-factura/ver-factura.module').then( m => m.VerFacturaPageModule)
+  },
+  {
+    path: 'ver-factura-cita/:id',
+    loadChildren: () => import('./pages/admin/facturas/ver-factura-cita/ver-factura-cita.module').then( m => m.VerFacturaCitaPageModule)
+  },
+  {
+    path: 'editar-cita/:id',
+    loadChildren: () => import('./pages/admin/citas/editar-cita/editar-cita.module').then( m => m.EditarCitaPageModule)
   }
 ];
 

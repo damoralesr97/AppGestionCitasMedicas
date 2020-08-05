@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar Cita</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #crarCitaForm="ngForm" (ngSubmit)="editarCita()">
+
+    <ion-list>
+
+
+        <ion-item>
+            <ion-label>Fecha</ion-label>
+            <ion-input [(ngModel)]="cita.data.fecha" type="date" name="fechaNac"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Hora</ion-label>
+          <ion-input [(ngModel)]="cita.data.hora" type="time" name="hora"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" color="primary" type="submit">Guardar</ion-button>
+  </form>
+</ion-content>

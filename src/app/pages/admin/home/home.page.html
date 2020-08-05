@@ -38,4 +38,16 @@
 
 <ion-content>
 
+    <ion-card>
+        <ion-card-header>
+            <ion-card-subtitle>Bienvenido Administrador</ion-card-subtitle>
+            <ion-card-title>{{admin.data.nombres + ' ' + admin.data.apellidos}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            <strong>Fecha de nacimiento:</strong> {{admin.data.fechaNac}} <br>
+            <strong>Email:</strong> {{admin.data.email}} <br>
+        </ion-card-content>
+    </ion-card>
+
 </ion-content>
