@@ -14,7 +14,7 @@
       <ion-label class="titulos">Apellidos Paciente</ion-label><ion-input required type="text" [(ngModel)]="usuario.apellidos" ></ion-input>
       <ion-label class="titulos">Nombres Paciente</ion-label><ion-input required type="text" [(ngModel)]="usuario.nombres" ></ion-input>
       <ion-label class="titulos">Antecedentes</ion-label><ion-input required type="text" [(ngModel)]="consulta.antecedentes"></ion-input>
-      <ion-label class="titulos">Sintomas</ion-label><ion-input required type="text" [(ngModel)]="consulta.sintomas"></ion-input>
+      <ion-label class="titulos">Sintomas</ion-label><ion-textarea required type="text" [(ngModel)]="consulta.sintomas"></ion-textarea>
       <ion-label class="titulos">Fecha</ion-label><ion-datetime displayFormat="DD/MM/YYYY" readonly="true" required [(ngModel)]="consulta.fecha"></ion-datetime>
       <ion-label class="titulos">Telefono</ion-label><ion-input required type="number" [(ngModel)]="usuario.telefono"></ion-input>
       <ion-label class="titulos">Total</ion-label><ion-input required type="number" [(ngModel)]="consulta.total"></ion-input>
