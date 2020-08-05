@@ -4,9 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PacienteService } from '../../../../shared/services/paciente.service';
 import { Paciente } from 'src/app/shared/models/paciente';
 import { AuthService } from '../../../../shared/services/auth.service';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import { Platform } from '@ionic/angular';
 import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
@@ -17,11 +14,6 @@ import { FileOpener } from '@ionic-native/file-opener/ngx';
   styleUrls: ['./factura.page.scss'],
 })
 export class FacturaPage implements OnInit {
-  letterObj = {
-    to: '',
-    from: '',
-    text: ''
-  };
   pdfObj = null;
   factura: any = {
     id: '',
@@ -31,6 +23,7 @@ export class FacturaPage implements OnInit {
     id: '',
     data: {} as Paciente
   };
+  
 
   // tslint:disable-next-line: max-line-length
   constructor(public authSrv: AuthService, public router: Router, private pacienteSrv: PacienteService, private route: ActivatedRoute, private plt: Platform, private file: File, private fileOpener: FileOpener) { }
@@ -56,7 +49,9 @@ export class FacturaPage implements OnInit {
   downloadPdf() {
 
     ///////////////////////////// Crea el pdf //////////////////////////
-
+    var pdfMake = require('pdfmake/build/pdfmake.js');
+    var pdfFonts = require('pdfmake/build/vfs_fonts.js');
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
     const docDefinition = {
       content: [
         { text: 'Factura', style: 'header' },

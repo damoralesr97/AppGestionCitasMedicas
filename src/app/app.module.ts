@@ -17,6 +17,7 @@ import { ComponentsModule } from './components/components.module';
 
 import { File } from '@ionic-native/file/ngx';
 import { FileOpener} from '@ionic-native/file-opener/ngx';
+import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { FileOpener} from '@ionic-native/file-opener/ngx';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     File,
-    FileOpener
+    FileOpener,
+    PDFGenerator
   ],
   bootstrap: [AppComponent]
 })
