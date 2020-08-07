@@ -110,8 +110,8 @@ export class CrearConsultaMedicoPage implements OnInit {
     this.usuario2=await this.medicoService.getUsuarioById(this.consulta.pacienteUid);
     this.usuario2.apellidos="Apellidos: "+this.usuario2.apellidos;
     this.usuario2.nombres="Nombres: "+this.usuario2.nombres;
-    this.usuario2.fechaNacimiento="Fecha Nacimiento: "+this.usuario2.fechaNacimiento;
-    this.usuario2.grupoSanguineo="Grupo Sanguineo: "+this.usuario2.grupoSanguineo;
+    this.usuario2.fechaNac="Fecha Nacimiento: "+this.usuario2.fechaNac;
+    this.usuario2.tipoSangre="Grupo Sanguineo: "+this.usuario2.tipoSangre;
     this.usuario2.estadoCivil="Estado Civil: "+this.usuario2.estadoCivil;
     this.usuario2.ocupacion="Ocupacion: "+this.usuario2.ocupacion;
     this.click=1;

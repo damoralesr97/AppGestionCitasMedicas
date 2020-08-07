@@ -6,9 +6,9 @@ export class UserC {
     telefono: string;
     direccion: string;
     email: string;
-    grupoSanguineo: string;
+    tipoSangre: string;
     estadoCivil: string;
-    fechaNacimiento: string;
+    fechaNac: string;
     ocupacion: string;
     password: string;
     rol: string;
