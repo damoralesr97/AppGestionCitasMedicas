@@ -17,6 +17,7 @@ export class VerCitasPage implements OnInit {
 
   citas: any[]=[];
   loading: any;
+  textoBuscar = '';
 
   constructor(private citaService: CitaService,private medicoSrv: MedicoService,private pacienteSrv:PacienteService, private loadingCtrl: LoadingController,private router:Router) { }
 
@@ -63,5 +64,10 @@ export class VerCitasPage implements OnInit {
     cita.estado='eliminada';
     this.citaService.deleteCita(cita);
 
+  }
+
+  buscarCita(event) {
+    const texto = event.target.value;
+    this.textoBuscar = texto;
   }
 }

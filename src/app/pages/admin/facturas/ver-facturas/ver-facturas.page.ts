@@ -15,6 +15,7 @@ export class VerFacturasPage implements OnInit {
 
   facturas: any[] = [];
   loading: any;
+  textoBuscar = '';
 
   constructor(private facturaSrv: FacturaService,private loadingCtrl: LoadingController,private pacienteSrv:PacienteService,private router: Router,private alertController: AlertController) { }
   
@@ -53,6 +54,11 @@ export class VerFacturasPage implements OnInit {
     factura.estado = 'anulado';
     this.facturaSrv.deleteFactura(factura);
     
+  }
+
+  buscarFactura(event) {
+    const texto = event.target.value;
+    this.textoBuscar = texto;
   }
 
 }

@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { VerCitasPageRoutingModule } from './ver-citas-routing.module';
 
 import { VerCitasPage } from './ver-citas.page';
+import { PipesModule } from '../../../../shared/pipes/pipes.module';
 
 @NgModule({
   imports: [
+    PipesModule,
     CommonModule,
     FormsModule,
     IonicModule,

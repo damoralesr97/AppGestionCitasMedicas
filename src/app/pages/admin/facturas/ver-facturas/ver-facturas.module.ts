@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { VerFacturasPageRoutingModule } from './ver-facturas-routing.module';
 
 import { VerFacturasPage } from './ver-facturas.page';
+import { PipesModule } from '../../../../shared/pipes/pipes.module';
 
 @NgModule({
   imports: [
+    PipesModule,
     CommonModule,
     FormsModule,
     IonicModule,
