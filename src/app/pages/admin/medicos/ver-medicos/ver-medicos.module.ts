@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { VerMedicosPageRoutingModule } from './ver-medicos-routing.module';
 
 import { VerMedicosPage } from './ver-medicos.page';
+import { PipesModule } from '../../../../shared/pipes/pipes.module';
 
 @NgModule({
   imports: [
+    PipesModule,
     CommonModule,
     FormsModule,
     IonicModule,

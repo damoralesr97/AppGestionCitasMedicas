@@ -10,12 +10,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./ver-medicos.page.scss'],
 })
 export class VerMedicosPage implements OnInit {
-  medicos: Observable<any>;
+  mds: any[] = [];
+  textoBuscar = '';
 
   constructor(private medicoSrv: MedicoService, private router: Router) { }
 
   ngOnInit() {
-    this.medicos = this.medicoSrv.getMedicos();
+    this.medicoSrv.getMedicos().subscribe(res => {
+      res.forEach((m) => {
+        this.mds.push(m);
+      });
+    });
   }
 
   trackByFn(index, obj) {
@@ -29,6 +34,11 @@ export class VerMedicosPage implements OnInit {
 
   showMedico(medicoUid: string) {
     this.router.navigate([`editar-medico-admin/${medicoUid}`]);
+  }
+
+  buscarMedico(event) {
+    const texto = event.target.value;
+    this.textoBuscar = texto;
   }
 
 }

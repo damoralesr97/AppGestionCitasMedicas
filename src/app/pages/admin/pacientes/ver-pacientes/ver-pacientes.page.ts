@@ -10,12 +10,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./ver-pacientes.page.scss'],
 })
 export class VerPacientesPage implements OnInit {
-  pacientes: Observable<any>;
+  pacs: any[] = [];
+  textoBuscar = '';
 
   constructor(private pacienteSrv: PacienteService, private router: Router) { }
 
   ngOnInit() {
-    this.pacientes = this.pacienteSrv.getPacientes();
+    this.pacienteSrv.getPacientes().subscribe(res => {
+      res.forEach((p) => {
+        this.pacs.push(p);
+      });
+    });
   }
 
   trackByFn(index, obj) {
@@ -29,6 +34,11 @@ export class VerPacientesPage implements OnInit {
 
   showPaciente(pacienteUid: string) {
     this.router.navigate([`editar-paciente-admin/${pacienteUid}`]);
+  }
+
+  buscarPaciente(event) {
+    const texto = event.target.value;
+    this.textoBuscar = texto;
   }
 
 }

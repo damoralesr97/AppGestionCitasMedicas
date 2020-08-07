@@ -6,7 +6,7 @@
         <ion-title>Médicos</ion-title>
     </ion-toolbar>
     <ion-toolbar color="primary">
-        <ion-searchbar placeholder="Buscar..." animated></ion-searchbar>
+        <ion-searchbar placeholder="Buscar..." animated (ionChange)="buscarMedico($event)"></ion-searchbar>
     </ion-toolbar>
 </ion-header>
 
@@ -14,7 +14,7 @@
 
     <ion-list>
 
-        <ion-item-sliding *ngFor="let medico of medicos | async; trackBy: trackByFn">
+        <ion-item-sliding *ngFor="let medico of mds | filtroMedico:textoBuscar">
             <ion-item>
                 <ion-label (click)="showMedico(medico.uid)">
                     <h2>{{medico.nombres + ' ' + medico.apellidos}}</h2>
