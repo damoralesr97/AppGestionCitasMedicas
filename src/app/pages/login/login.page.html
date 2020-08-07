@@ -25,11 +25,10 @@
             <ion-icon icon-small name="lock-closed-outline"></ion-icon>
             <ion-input [(ngModel)]="user.contrasena" placeholder="Contraseña" type="password"></ion-input>
         </ion-item>
-        <ion-label class="forget-password">Olvidé mi clave</ion-label>
 
         <div linespace></div>
 
         <ion-button (click)="login()" color="primary" class="ion-buttom-class" shape="round" fill="solid" size="large" expand="block">LOGIN</ion-button>
-        <ion-label class="ion-text-center">¿No tienes una cuenta? <span class="link-buttom"><strong>Regístrate</strong></span></ion-label>
+        <ion-label class="ion-text-center">¿No tienes una cuenta? <span class="link-buttom" routerLink="/registro"><strong>Regístrate</strong></span></ion-label>
     </div>
 </ion-content>

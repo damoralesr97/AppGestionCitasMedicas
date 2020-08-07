@@ -27,12 +27,31 @@
 
             <ion-item>
                 <ion-label position="stacked">Fecha</ion-label>
-                <ion-input [(ngModel)]="cita.fecha" type="date" name="fecha"></ion-input>
+                <ion-input [(ngModel)]="cita.fecha" type="date" name="fecha" min="2020-08-01"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label position="stacked">Hora</ion-label>
-                <ion-input [(ngModel)]="cita.hora" type="time" name="hora"></ion-input>
+                <ion-label>Hora</ion-label>
+                <ion-select ok-text="Ok" cancel-text="Cancelar" [(ngModel)]="cita.hora" name="hora">
+                    <ion-select-option value="09:00">09:00</ion-select-option>
+                    <ion-select-option value="09:30">09:30</ion-select-option>
+                    <ion-select-option value="10:00">10:00</ion-select-option>
+                    <ion-select-option value="10:30">10:30</ion-select-option>
+                    <ion-select-option value="11:00">11:00</ion-select-option>
+                    <ion-select-option value="11:30">11:30</ion-select-option>
+                    <ion-select-option value="12:00">12:00</ion-select-option>
+                    <ion-select-option value="12:30">12:30</ion-select-option>
+                    <ion-select-option value="13:00">13:00</ion-select-option>
+                    <ion-select-option value="13:30">13:30</ion-select-option>
+                    <ion-select-option value="14:00">14:00</ion-select-option>
+                    <ion-select-option value="14:30">14:30</ion-select-option>
+                    <ion-select-option value="15:00">15:00</ion-select-option>
+                    <ion-select-option value="15:30">15:30</ion-select-option>
+                    <ion-select-option value="16:00">16:00</ion-select-option>
+                    <ion-select-option value="16:30">16:30</ion-select-option>
+                    <ion-select-option value="17:00">17:00</ion-select-option>
+                    <ion-select-option value="17:30">17:30</ion-select-option>
+                </ion-select>
             </ion-item>
 
             <ion-item>

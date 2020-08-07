@@ -41,10 +41,7 @@ export class CrearCitaPage implements OnInit {
   onSubmitTemplate(){
     this.cita.pacienteUid = this.paciente.id;
     this.cita.estado = 'PENDIENTE';
-    this.pacienteSrv.guardarCita(this.cita);
-    this.presentAlert('Cita solicitado con éxito');
-    this.router.navigateByUrl('/home-paciente');
-
+    this.medicoSrv.agendarCita(this.cita);
   }
 
   trackByFn(index, obj) {

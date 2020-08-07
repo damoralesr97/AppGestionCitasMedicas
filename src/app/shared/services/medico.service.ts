@@ -14,6 +14,8 @@ import { Consulta } from '../models/consulta.class';
 import { Factura } from '../models/factura.class';
 import { Receta } from '../models/receta.class';
 import { UserC } from './../models/user.class';
+import { PacienteService } from './paciente.service';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -21,7 +23,8 @@ import { UserC } from './../models/user.class';
 })
 export class MedicoService {
 
-  constructor(private afAuth: AngularFireAuth, private angularFirestore: AngularFirestore, private alertController: AlertController) { }
+  // tslint:disable-next-line: max-line-length
+  constructor(private afAuth: AngularFireAuth, private angularFirestore: AngularFirestore, private alertController: AlertController, private pacienteSrv: PacienteService, private router: Router) { }
 
   // RegistrarMedico
   async onRegister(medico: Medico) {
@@ -72,6 +75,25 @@ export class MedicoService {
 
     } catch (error) {
       this.presentAlert(error.message);
+    }
+  }
+
+  // Comprobar disponibilidad cita
+  async agendarCita(cita: Cita) {
+    let citas = [];
+    // tslint:disable-next-line: max-line-length
+    await (await this.angularFirestore.collection<Cita>('citas', ref => ref.where('medicoUid', '==', cita.medicoUid).where('fecha', '==', cita.fecha).where('hora', '==', cita.hora)).snapshotChanges().pipe(first()).toPromise().then( resp => {
+      resp.forEach((c) => {
+        citas.push(c.payload.doc.data());
+      });
+    }));
+    if (citas.length === 0){
+      this.pacienteSrv.guardarCita(cita);
+      this.presentAlert('Cita solicitado con éxito');
+      this.router.navigateByUrl('/home-paciente');
+      return;
+    } else {
+      this.presentAlert('El horario que eligió no esta disponible.');
     }
   }
 
