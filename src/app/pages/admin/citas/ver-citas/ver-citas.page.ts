@@ -70,4 +70,8 @@ export class VerCitasPage implements OnInit {
     const texto = event.target.value;
     this.textoBuscar = texto;
   }
+
+  regresar() {
+    this.router.navigateByUrl('/home-admin');
+  }
 }

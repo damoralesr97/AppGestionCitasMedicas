@@ -61,4 +61,8 @@ export class VerFacturasPage implements OnInit {
     this.textoBuscar = texto;
   }
 
+  regresar() {
+    this.router.navigateByUrl('/home-admin');
+  }
+
 }
