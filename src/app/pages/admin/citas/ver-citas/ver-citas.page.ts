@@ -22,17 +22,17 @@ export class VerCitasPage implements OnInit {
   constructor(private citaService: CitaService,private medicoSrv: MedicoService,private pacienteSrv:PacienteService, private loadingCtrl: LoadingController,private router:Router) { }
 
   async ngOnInit() {
-    this.presentLoading();
-    await (await this.citaService.getCitas()).pipe(first()).toPromise().then( resp => {
+    await this.presentLoading();
+    (await this.citaService.getCitas()).subscribe(async resp => {
       resp.forEach((cita) => {
         this.citas.push(cita.payload.doc.data());
       });
+      for(let a of this.citas){
+        a.medico   = await this.getMedico(a.medicoUid);
+        a.paciente = await this.getPaciente(a.pacienteUid);
+      }
+      this.loading.dismiss();
     });
-    for(let a of this.citas){
-      a.medico   = await this.getMedico(a.medicoUid);
-      a.paciente = await this.getPaciente(a.pacienteUid);
-    }
-    this.loading.dismiss();
   }
 
   async getMedico(uid: string){
@@ -72,6 +72,7 @@ export class VerCitasPage implements OnInit {
   }
 
   regresar() {
-    this.router.navigateByUrl('/home-admin');
+    console.log('regresar');
+    this.router.navigateByUrl('home-admin');
   }
 }

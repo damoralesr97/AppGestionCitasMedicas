@@ -5,6 +5,7 @@ import { PacienteService } from './../../../../shared/services/paciente.service'
 import { LoadingController, AlertController } from '@ionic/angular';
 import { FacturaService } from './../../../../shared/services/factura.service';
 import { Component, OnInit } from '@angular/core';
+import { async } from 'rxjs/internal/scheduler/async';
 
 @Component({
   selector: 'app-ver-facturas',
@@ -20,16 +21,16 @@ export class VerFacturasPage implements OnInit {
   constructor(private facturaSrv: FacturaService,private loadingCtrl: LoadingController,private pacienteSrv:PacienteService,private router: Router,private alertController: AlertController) { }
   
   async ngOnInit() {
-    this.presentLoading()
-    await (await this.facturaSrv.getFacturas()).pipe(first()).toPromise().then( resp => {
+    await this.presentLoading()
+    await (await this.facturaSrv.getFacturas()).subscribe(async resp => {
       resp.forEach((factura) => {
         this.facturas.push(factura.payload.doc.data());
       });
+      for(let a of this.facturas){
+        a.paciente = await this.getPaciente(a.usuarioUid);
+      }
+      this.loading.dismiss();
     });
-    for(let a of this.facturas){
-      a.paciente = await this.getPaciente(a.usuarioUid);
-    }
-    this.loading.dismiss();
   }
 
   async getPaciente(uid: string){
@@ -62,6 +63,7 @@ export class VerFacturasPage implements OnInit {
   }
 
   regresar() {
+    console.log('regresar');
     this.router.navigateByUrl('/home-admin');
   }
 
